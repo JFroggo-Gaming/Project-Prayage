@@ -47,13 +47,23 @@ public static class Settings
     public static int idleLeft;
     public static int idleRight;
 
-    // Tools
-    public const string HoeingTool = "Hoe";
-    public const string ChoppingTool = "Axe";
-    public const string BreakingTool = "Pickaxe";
-    public const string ReapingTool = "Scythe";
-    public const string WateringTool = "Watering Can";
-    public const string CollectingTool = "Basket";
+    // Modlitwy & Intencje
+    // Intencje
+    public const string IntencjaZlota = "Intencja Zlota";
+    public const string IntencjaPoswiecenia = "Intencja Poswiecenia";
+    public const string IntencjaPlodnosci = "Intencja Plodnosci";
+    public const string IntencjaWiary = "Intencja Wiary";
+    public const string IntencjaWiedzy = "Intencja Wiedzy";
+    public const string IntencjaPomyslnosci = "Intencja Pomyslnosci";
+    public const string IntencjaBlogoslawienstwa = "Intencja Blogoslawienstwa";
+    public const string IntencjaPrzyjaciela = "Intencja Przyjaciela";
+    public const string IntencjaRelikwiarzu = "Intencja Relikwiarzu";
+    // Modlitwy
+    public const string ZarliwejModlitwy = "Zarliwa Modlitwa";
+    public const string MajestatycznejModlitwy = "Majestatyczna Modlitwa";
+    public const string CholerycznejModlitwy = "Choleryczna Modlitwa";
+    public const string BiernejModlitwy = "Bierna Modlitwa";
+
 
     //static conctructor
     static Settings()

@@ -34,7 +34,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private void Start()
     {
         mainCamera = Camera.main;
-        parentItem = GameObject.FindGameObjectWithTag("ItemsParentTransform").transform;
+       parentItem = GameObject.FindGameObjectWithTag("ItemsParentTransform").transform;
     }
 
     /// <summary>

@@ -183,29 +183,52 @@ public class InventoryManager : SingletonMonobehaviour<InventoryManager>
     string itemTypeDescription;
     switch (itemType)
     {
-        case ItemType.Breaking_tool:
-            itemTypeDescription = Settings.BreakingTool;
+        case ItemType.IntencjaZlota:
+            itemTypeDescription = Settings.IntencjaZlota;
             break;
 
-        case ItemType.Chopping_tool:
-            itemTypeDescription = Settings.ChoppingTool;
+        case ItemType.IntencjaPoswiecenia:
+            itemTypeDescription = Settings.IntencjaPoswiecenia;
             break;
 
-        case ItemType.Hoeing_tool:
-            itemTypeDescription = Settings.HoeingTool;
+        case ItemType.IntencjaPlodnosci:
+            itemTypeDescription = Settings.IntencjaPlodnosci;
             break;
 
-        case ItemType.Reaping_tool:
-            itemTypeDescription = Settings.ReapingTool;
+        case ItemType.IntencjaWiary:
+            itemTypeDescription = Settings.IntencjaWiary;
             break;
 
-        case ItemType.Watering_tool:
-            itemTypeDescription = Settings.WateringTool;
+        case ItemType.IntencjaWiedzy:
+            itemTypeDescription = Settings.IntencjaWiedzy;
             break;
 
-        case ItemType.Collecting_tool:
-            itemTypeDescription = Settings.CollectingTool;
+        case ItemType.IntencjaPomyslnosci:
+            itemTypeDescription = Settings.IntencjaPomyslnosci;
             break;
+
+        case ItemType.IntencjaBlogoslawienstwa:
+            itemTypeDescription = Settings.IntencjaBlogoslawienstwa;
+            break;
+        case ItemType.IntencjaPrzyjaciela:
+            itemTypeDescription = Settings.IntencjaPrzyjaciela;
+            break;
+        case ItemType.IntencjaRelikwiarzu:
+            itemTypeDescription = Settings.IntencjaRelikwiarzu;
+            break;
+        case ItemType.ZarliwejModlitwy:
+            itemTypeDescription = Settings.ZarliwejModlitwy;
+            break;
+        case ItemType.MajestatycznejModlitwy:
+            itemTypeDescription = Settings.MajestatycznejModlitwy;
+            break;
+        case ItemType.CholerycznejModlitwy:
+            itemTypeDescription = Settings.CholerycznejModlitwy;
+            break;
+        case ItemType.BiernejModlitwy:
+            itemTypeDescription = Settings.BiernejModlitwy;
+            break;
+        
 
         default:
             itemTypeDescription = itemType.ToString();

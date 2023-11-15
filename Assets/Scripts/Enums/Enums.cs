@@ -84,17 +84,22 @@ public enum Direction // player movement direction
 }
 
 public enum ItemType
-{
-    Seed,
-    Commodity,
-    Watering_tool,
-    Hoeing_tool,
-    Chopping_tool,
-    Breaking_tool,
-    Reaping_tool,
-    Collecting_tool,
-    Reapable_scenary,
-    Furniture,
+{   
+    // Intencje
+    IntencjaZlota,
+    IntencjaPoswiecenia,
+    IntencjaPlodnosci,
+    IntencjaWiary,
+    IntencjaWiedzy,
+    IntencjaPomyslnosci,
+    IntencjaBlogoslawienstwa,
+    IntencjaPrzyjaciela,
+    IntencjaRelikwiarzu,
+    // Modlitwy
+    ZarliwejModlitwy,
+    MajestatycznejModlitwy,
+    CholerycznejModlitwy,
+    BiernejModlitwy,
     none,
     count
 }
