@@ -1,6 +1,6 @@
 [System.Serializable]
-public struct InventorySlot
+public struct InventoryItem
 {
     public int itemCode;
-    public bool isUnlimited;
+    public int itemQuantity;
 }

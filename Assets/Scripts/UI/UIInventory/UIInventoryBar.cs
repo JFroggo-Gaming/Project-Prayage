@@ -47,22 +47,17 @@ public class UIInventoryBar : MonoBehaviour
         }
     }
     private void ClearInventorySlots()
+{
+    for (int i = 0; i < inventorySlot.Length; i++)
     {
-        if (inventorySlot.Length > 0)
-        {
-            // loop through inventory clots and uptade with blank sprite
-            for (int i = 0; i < inventorySlot.Length; i++)
-
-            {
-                inventorySlot[i].inventorySlotImage.sprite = blank16x16Ssprite;
-                inventorySlot[i].textMeshProUGUI.text = "";
-                inventorySlot[i].itemDetails = null;
-                inventorySlot[i].itemQuantity = 0;
-                
-                SetHighlightedInventorySlots();
-            }
-        }
+        inventorySlot[i].inventorySlotImage.sprite = blank16x16Ssprite;
+        inventorySlot[i].textMeshProUGUI.text = "";
+        inventorySlot[i].itemDetails = null;
+        inventorySlot[i].itemQuantity = 0;
+        SetHighlightedInventorySlots(i);
     }
+}
+
     private void InventoryUpdated(InventoryLocation inventoryLocation, List<InventoryItem> inventoryList)
     {
         if (inventoryLocation == InventoryLocation.player)

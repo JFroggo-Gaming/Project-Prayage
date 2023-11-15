@@ -13,6 +13,9 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public Image inventorySlotHighlight;
     public Image inventorySlotImage;
     public TextMeshProUGUI textMeshProUGUI;
+
+    [SerializeField] private int constantItemQuantity = 99;  // Stała liczba przedmiotów w slocie
+    [SerializeField] private Item constantItem = null;  // Referencja do przedmiotu
     [SerializeField] private int slotNumber = 0;
 
     private void Awake()
@@ -34,7 +37,14 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private void Start()
     {
         mainCamera = Camera.main;
-       parentItem = GameObject.FindGameObjectWithTag("ItemsParentTransform").transform;
+        parentItem = GameObject.FindGameObjectWithTag("ItemsParentTransform").transform;
+        if (constantItem != null)
+        {
+        InventoryManager.Instance.AddItem(InventoryLocation.player, constantItem, constantItemQuantity);
+        }
+
+
+
     }
 
     /// <summary>
@@ -93,8 +103,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             GameObject itemGameObject = Instantiate(itemPrefab, worldPosition, Quaternion.identity, parentItem);
             Item item = itemGameObject.GetComponent<Item>();
             item.ItemCode = itemDetails.itemCode;
-             // Przywrócenie stanu BoxCollider
-            item.RestoreColliderState();
+            
 
             // Remove item from player's inventory
             InventoryManager.Instance.RemoveItem(InventoryLocation.player, item.ItemCode);

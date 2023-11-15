@@ -42,9 +42,12 @@ public class Item : MonoBehaviour
         SaveColliderData();
         
         // Logic to pick up the item and add it to the inventory
-        InventoryManager.Instance.AddItem(InventoryLocation.player, this, gameObject);
-    }
+        InventoryManager.Instance.AddItem(InventoryLocation.player, this);
 
+        // Usuń obiekt z sceny
+        Destroy(gameObject);
+
+    }
     // Zapisz aktualny stan BoxCollider
     private void SaveColliderData()
     {
