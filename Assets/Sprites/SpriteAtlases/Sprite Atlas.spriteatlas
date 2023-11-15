@@ -665,11 +665,11 @@ SpriteAtlas:
     - 0f48021b42b3b4342b1829669a8ec65d: -8079878080289612398
     - 7b7d515ba974c464aab4836be0539049: 21300000
     - 898d91cb190da4b479714f63ae8519e0: 21300000
-    - 730e572c78cf0244ca0db36bb8f3af7f: 21300000
     - 59571e9c844bae74d80d56a20b84db08: 21300000
     - 90499fac1706de44382ab07f7887e79e: 21300000
     - b2eff0cde9f776947b747c1a4cc96406: 21300000
     - d1488fdd7509cda4f9b89da8bb3c5a68: 21300000
+    - 9eecc81eb90cf7940a8448365a68c985: 21300000
     - 96b7ceee1a041064fb3639aec06c2baf: 21300000
     - b793cccf0b10a2148b7c8e09c08ac094: 6933223335694393071
     - b793cccf0b10a2148b7c8e09c08ac094: -1397365509746193196
@@ -1318,11 +1318,11 @@ SpriteAtlas:
   - {fileID: -8079878080289612398, guid: 0f48021b42b3b4342b1829669a8ec65d, type: 3}
   - {fileID: 21300000, guid: 7b7d515ba974c464aab4836be0539049, type: 3}
   - {fileID: 21300000, guid: 898d91cb190da4b479714f63ae8519e0, type: 3}
-  - {fileID: 21300000, guid: 730e572c78cf0244ca0db36bb8f3af7f, type: 3}
   - {fileID: 21300000, guid: 59571e9c844bae74d80d56a20b84db08, type: 3}
   - {fileID: 21300000, guid: 90499fac1706de44382ab07f7887e79e, type: 3}
   - {fileID: 21300000, guid: b2eff0cde9f776947b747c1a4cc96406, type: 3}
   - {fileID: 21300000, guid: d1488fdd7509cda4f9b89da8bb3c5a68, type: 3}
+  - {fileID: 21300000, guid: 9eecc81eb90cf7940a8448365a68c985, type: 3}
   - {fileID: 21300000, guid: 96b7ceee1a041064fb3639aec06c2baf, type: 3}
   - {fileID: 6933223335694393071, guid: b793cccf0b10a2148b7c8e09c08ac094, type: 3}
   - {fileID: -1397365509746193196, guid: b793cccf0b10a2148b7c8e09c08ac094, type: 3}
@@ -1970,11 +1970,11 @@ SpriteAtlas:
   - GroundTileset_212
   - PrzyjacielaInwokacjaSprite
   - GreenCursor
-  - Acorn
   - WiaryInwokacjaSprite
   - Collision Tile Diagonal
   - InventoryHighlight
   - PauseScreenSelectedTab
+  - UIBar13Slots2
   - PasywnaModlitwaSprite
   - DugGround_14
   - DugGround_15

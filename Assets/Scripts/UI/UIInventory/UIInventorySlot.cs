@@ -86,15 +86,20 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private void DropSelectedItemAtMousePosition()
     {
         if (itemDetails != null && isSelected)
-        {
+        {   
+            
             Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -mainCamera.transform.position.z));
             // Create item from prefab at mouse position
             GameObject itemGameObject = Instantiate(itemPrefab, worldPosition, Quaternion.identity, parentItem);
             Item item = itemGameObject.GetComponent<Item>();
             item.ItemCode = itemDetails.itemCode;
+             // Przywrócenie stanu BoxCollider
+            item.RestoreColliderState();
 
             // Remove item from player's inventory
             InventoryManager.Instance.RemoveItem(InventoryLocation.player, item.ItemCode);
+
+           
 
             // If no more item then clear selected
             if(InventoryManager.Instance.FindItemInInventory(InventoryLocation.player, item.ItemCode) == -1)
@@ -135,7 +140,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                     DropSelectedItemAtMousePosition();
                 }
             }
-    
+        
 
         }
     }
