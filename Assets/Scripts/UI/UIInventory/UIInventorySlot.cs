@@ -61,8 +61,6 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (itemDetails != null)
         {
-            // Disable keyboard input
-            Player.Instance.DisablePlayerInputAndResetMovement();
 
             // Instantiate gameObject as dragged item
             draggedItem = Instantiate(inventoryBar.InventoryBarDraggedItem, inventoryBar.transform);
@@ -137,8 +135,8 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                     DropSelectedItemAtMousePosition();
                 }
             }
-            // Enable player input
-            Player.Instance.EnablePlayerInput();
+    
+
         }
     }
 
