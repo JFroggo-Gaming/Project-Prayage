@@ -53,7 +53,9 @@ SpriteAtlas:
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
     - 3f6100a0c407a8a408ea565651cbd9b1: 21300000
+    - 103605b077f213148bcad4d402bfd58c: 21300000
     - aa1fcd9144ccf574985824378256b95c: 21300000
+    - c24ac392c8d0c6e4abf197ebf030e8cc: 21300000
     - 0e9e72533af4a924cb98248a27955a25: 21300000
     - adc5f553b0f0d4444839cedeb892bab4: 21300000
     - 6ff0fc93b8a1c2f40932b63364922912: 21300000
@@ -664,10 +666,11 @@ SpriteAtlas:
     - 0f48021b42b3b4342b1829669a8ec65d: -2485526237100873097
     - 0f48021b42b3b4342b1829669a8ec65d: -8079878080289612398
     - 7b7d515ba974c464aab4836be0539049: 21300000
+    - 3583075b77f1aa74b8f42c8cddbba369: 21300000
     - 898d91cb190da4b479714f63ae8519e0: 21300000
     - 59571e9c844bae74d80d56a20b84db08: 21300000
+    - 4dfa86ac4e6ec5a459a0592808a5c2bc: 21300000
     - 90499fac1706de44382ab07f7887e79e: 21300000
-    - b2eff0cde9f776947b747c1a4cc96406: 21300000
     - d1488fdd7509cda4f9b89da8bb3c5a68: 21300000
     - 9eecc81eb90cf7940a8448365a68c985: 21300000
     - 96b7ceee1a041064fb3639aec06c2baf: 21300000
@@ -706,7 +709,9 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 3f6100a0c407a8a408ea565651cbd9b1, type: 3}
+  - {fileID: 21300000, guid: 103605b077f213148bcad4d402bfd58c, type: 3}
   - {fileID: 21300000, guid: aa1fcd9144ccf574985824378256b95c, type: 3}
+  - {fileID: 21300000, guid: c24ac392c8d0c6e4abf197ebf030e8cc, type: 3}
   - {fileID: 21300000, guid: 0e9e72533af4a924cb98248a27955a25, type: 3}
   - {fileID: 21300000, guid: adc5f553b0f0d4444839cedeb892bab4, type: 3}
   - {fileID: 21300000, guid: 6ff0fc93b8a1c2f40932b63364922912, type: 3}
@@ -1317,10 +1322,11 @@ SpriteAtlas:
   - {fileID: -2485526237100873097, guid: 0f48021b42b3b4342b1829669a8ec65d, type: 3}
   - {fileID: -8079878080289612398, guid: 0f48021b42b3b4342b1829669a8ec65d, type: 3}
   - {fileID: 21300000, guid: 7b7d515ba974c464aab4836be0539049, type: 3}
+  - {fileID: 21300000, guid: 3583075b77f1aa74b8f42c8cddbba369, type: 3}
   - {fileID: 21300000, guid: 898d91cb190da4b479714f63ae8519e0, type: 3}
   - {fileID: 21300000, guid: 59571e9c844bae74d80d56a20b84db08, type: 3}
+  - {fileID: 21300000, guid: 4dfa86ac4e6ec5a459a0592808a5c2bc, type: 3}
   - {fileID: 21300000, guid: 90499fac1706de44382ab07f7887e79e, type: 3}
-  - {fileID: 21300000, guid: b2eff0cde9f776947b747c1a4cc96406, type: 3}
   - {fileID: 21300000, guid: d1488fdd7509cda4f9b89da8bb3c5a68, type: 3}
   - {fileID: 21300000, guid: 9eecc81eb90cf7940a8448365a68c985, type: 3}
   - {fileID: 21300000, guid: 96b7ceee1a041064fb3639aec06c2baf, type: 3}
@@ -1358,7 +1364,9 @@ SpriteAtlas:
   - {fileID: 7303584569058495136, guid: b793cccf0b10a2148b7c8e09c08ac094, type: 3}
   m_PackedSpriteNamesToIndex:
   - BlogoslawienstwaInwokacjaSprite
+  - InventoryHighlightRED1
   - Clock
+  - InventoryHighlightGREEN
   - PauseScreen9Sprite
   - MajestatycznaModlitwaSprite
   - WiedzyInwokacjaSprite
@@ -1969,10 +1977,11 @@ SpriteAtlas:
   - GroundTileset_108
   - GroundTileset_212
   - PrzyjacielaInwokacjaSprite
+  - InventoryHighlightGOLD
   - GreenCursor
   - WiaryInwokacjaSprite
+  - CraftingSlot
   - Collision Tile Diagonal
-  - InventoryHighlight
   - PauseScreenSelectedTab
   - UIBar13Slots2
   - PasywnaModlitwaSprite

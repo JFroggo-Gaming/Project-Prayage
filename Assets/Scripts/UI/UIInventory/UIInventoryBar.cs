@@ -19,14 +19,18 @@ public class UIInventoryBar : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
     }
-    private void OnEnable()
+   private void OnEnable()
     {
-        EventHandler.InventoryUpdatedEvent += InventoryUpdated;
+    EventHandler.InventoryUpdatedEvent += InventoryUpdated;
     }
+
     private void OnDisable()
     {
-        EventHandler.InventoryUpdatedEvent -= InventoryUpdated;
+    EventHandler.InventoryUpdatedEvent -= InventoryUpdated;
     }
+
+
+
     
 
     public void ClearHighlightOnInventorySlots()
@@ -59,42 +63,39 @@ public class UIInventoryBar : MonoBehaviour
 }
 
     private void InventoryUpdated(InventoryLocation inventoryLocation, List<InventoryItem> inventoryList)
+{
+    // Upewnij się, że aktualizujemy ekwipunek gracza
+    if (inventoryLocation != InventoryLocation.player) return;
+
+    // Iteruj przez wszystkie sloty w UI ekwipunku
+    for (int i = 0; i < inventorySlot.Length; i++)
     {
-        if (inventoryLocation == InventoryLocation.player)
+        // Jeśli istnieje przedmiot w ekwipunku na tej pozycji, zaktualizuj slot
+        if (i < inventoryList.Count)
         {
-            ClearInventorySlots();
+            InventoryItem item = inventoryList[i];
+            ItemDetails itemDetails = InventoryManager.Instance.GetItemDetails(item.itemCode);
 
-            if (inventorySlot.Length > 0 && inventoryList.Count > 0)
+            if (itemDetails != null)
             {
-                // loop through inventory slots and update with corresponding inventory list item
-                for (int i = 0; i < inventorySlot.Length; i++)
-                {
-                    if (i < inventoryList.Count)
-                    {
-                        int itemCode = inventoryList[i].itemCode;
-
-                        // ItemDetails itemDetails = InventoryManager.Instance.itemList.itemDetails.Find(x => x.itemCode == itemCode);
-                        ItemDetails itemDetails = InventoryManager.Instance.GetItemDetails(itemCode);
-
-                        if (itemDetails != null)
-                        {
-                            // add images and details to inventory item slot
-                            inventorySlot[i].inventorySlotImage.sprite = itemDetails.itemSprite;
-                            inventorySlot[i].textMeshProUGUI.text = inventoryList[i].itemQuantity.ToString();
-                            inventorySlot[i].itemDetails = itemDetails;
-                            inventorySlot[i].itemQuantity = inventoryList[i].itemQuantity;
-                            SetHighlightedInventorySlots(i);
-
-                        }
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
+                // Ustaw sprite i inne szczegóły dla slotu ekwipunku
+                inventorySlot[i].inventorySlotImage.sprite = itemDetails.itemSprite;
+                inventorySlot[i].textMeshProUGUI.text = item.itemQuantity.ToString();
+                inventorySlot[i].itemDetails = itemDetails;
+                inventorySlot[i].itemQuantity = item.itemQuantity;
             }
         }
+        else
+        {
+            // W przeciwnym razie wyczyść slot (jeśli nie ma przedmiotu)
+            inventorySlot[i].inventorySlotImage.sprite = null; // Lub użyj sprite'a pustego slotu
+            inventorySlot[i].textMeshProUGUI.text = "";
+            inventorySlot[i].itemDetails = null;
+            inventorySlot[i].itemQuantity = 0;
+        }
     }
+}
+
 
 /// <summary>
 ///  set the selected highlight if set on all inventory position
