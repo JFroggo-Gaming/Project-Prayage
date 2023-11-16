@@ -119,40 +119,48 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public void ClearSlot()
     {
-        // Destroy gameObject as dragged item
-        if (draggedItem != null)
-        {
-            Destroy(draggedItem);
+    itemDetails = null;
+    itemQuantity = 0;
+    inventorySlotImage.sprite = null;
+    textMeshProUGUI.text = "";
+    }
 
-            // If drag ends over inventory bar, get item drag is over and swap them
-            if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.GetComponent<UIInventorySlot>() != null)
-            {
-                // get the slot number where drag ended
-                int toSlotNumber = eventData.pointerCurrentRaycast.gameObject.GetComponent<UIInventorySlot>().slotNumber;
+    public void OnEndDrag(PointerEventData eventData)
+{
+    if (draggedItem != null)
+    {
+        Destroy(draggedItem);
 
-                // Swap inventory item in inventory list
-                InventoryManager.Instance.SwapInventoryItems(InventoryLocation.player, slotNumber, toSlotNumber);
+        GameObject targetObject = eventData.pointerCurrentRaycast.gameObject;
 
-                // Destroy inventory text box
-                DestroyInventoryTextBox();
+        // Sprawdzanie, czy upuszczanie nastąpiło nad slotem przybornika
+        if (targetObject != null && targetObject.GetComponent<UIInventorySlot>() != null)
+        {   
+            Debug.Log("UPUSZCZASZ NAD PANELEM");
+            int toSlotNumber = targetObject.GetComponent<UIInventorySlot>().slotNumber;
+            InventoryManager.Instance.SwapInventoryItems(InventoryLocation.player, slotNumber, toSlotNumber);
+            DestroyInventoryTextBox();
+            ClearSelectedItem();
+        }
+        // Sprawdzanie, czy upuszczanie nastąpiło nad slotem panelu rzemieślniczego
+        else if (targetObject != null && targetObject.GetComponent<UIInventoryCraftingSlot>() != null)
+        {   
+        Debug.Log("UPUSZCZASZ NAD PANELEM 3x3");
+        // Przenieś przedmiot do panelu rzemieślniczego
+        InventoryManager.Instance.TransferItemToCraftingPanel(this, targetObject.GetComponent<UIInventoryCraftingSlot>());
+        }
 
-                // Clear selected item
-                ClearSelectedItem();
-            }
-            // Else attempt to drop the item if it can be dropped
-            else
-            {
-                if (itemDetails.canBeDropped)
-                {
-                    DropSelectedItemAtMousePosition();
-                }
-            }
-        
-
+        // Upuszczanie przedmiotu na ziemię
+        else if (itemDetails.canBeDropped)
+        {   
+            
+            DropSelectedItemAtMousePosition();
         }
     }
+}
+
 
     public void OnPointerClick(PointerEventData eventData)
     {

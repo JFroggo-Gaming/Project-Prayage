@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UIInventoryBar : MonoBehaviour
-{   
+{
     [SerializeField] private Sprite blank16x16Ssprite = null;
     [SerializeField] private UIInventorySlot[] inventorySlot = null;
 
@@ -13,11 +13,13 @@ public class UIInventoryBar : MonoBehaviour
 
     private bool _isInventoryBarPositionBottom = true;
 
-    public bool IsInventoryBarPositionBottom { get => _isInventoryBarPositionBottom; set => _isInventoryBarPositionBottom = value;}
+    public bool IsInventoryBarPositionBottom { get => _isInventoryBarPositionBottom; set => _isInventoryBarPositionBottom = value; }
+
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        
     }
    private void OnEnable()
     {

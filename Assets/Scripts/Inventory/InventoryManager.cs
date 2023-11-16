@@ -272,12 +272,20 @@ public string GetItemTypeDescription(ItemType itemType)
         selectedInventoryItem[(int)inventoryLocation] = -1;
     }
 
-    /* private void DebugPrintInventoryList(List<InventoryItem> inventoryList)
-    {   
-        foreach (InventoryItem inventoryItem in inventoryList)
-        {
-            Debug.Log("Item Description: " + GetItemDetails(inventoryItem.itemCode).itemDescription + " Item Quantity: " + inventoryItem.itemQuantity);
-        }
-        Debug.Log("*****************************************************");
-    } */
+    public void TransferItemToCraftingPanel(UIInventorySlot sourceSlot, UIInventoryCraftingSlot targetCraftingSlot)
+{
+    if (sourceSlot.itemDetails != null)
+    {
+        // Tutaj możesz dodać dodatkową logikę dla łączenia przedmiotów, sprawdzania typu itp.
+
+        // Przenieś informacje o przedmiocie do slotu panelu rzemieślniczego
+        targetCraftingSlot.itemDetails = sourceSlot.itemDetails;
+        targetCraftingSlot.itemQuantity = sourceSlot.itemQuantity;
+        targetCraftingSlot.UpdateSlotDisplay();
+
+        // Oczyść slot źródłowy
+        sourceSlot.ClearSlot();
+    }
+}
+
 }
