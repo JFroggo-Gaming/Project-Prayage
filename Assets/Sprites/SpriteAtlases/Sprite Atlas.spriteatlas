@@ -56,6 +56,7 @@ SpriteAtlas:
     - 103605b077f213148bcad4d402bfd58c: 21300000
     - aa1fcd9144ccf574985824378256b95c: 21300000
     - c24ac392c8d0c6e4abf197ebf030e8cc: 21300000
+    - 652e95b26b32bed4e920ba58b36a62b0: 21300000
     - 0e9e72533af4a924cb98248a27955a25: 21300000
     - adc5f553b0f0d4444839cedeb892bab4: 21300000
     - 6ff0fc93b8a1c2f40932b63364922912: 21300000
@@ -104,6 +105,7 @@ SpriteAtlas:
     - afeab3b9fd0c19442af661a1d1f72d1b: -8937822744323045597
     - afeab3b9fd0c19442af661a1d1f72d1b: -6351870387016058614
     - d210793aeef3be74ba5ecda0bbe898c9: 21300000
+    - 9324faaa6af0cbd409fd6a901d05315b: 21300000
     - 5b29a1ba3552b5b4b824c583e87783fd: 21300000
     - 46b161dabd24e6c43aa181b2d99642e7: 21300000
     - 45368eea2740e5040ad33bd39d932887: 21300000
@@ -712,6 +714,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 103605b077f213148bcad4d402bfd58c, type: 3}
   - {fileID: 21300000, guid: aa1fcd9144ccf574985824378256b95c, type: 3}
   - {fileID: 21300000, guid: c24ac392c8d0c6e4abf197ebf030e8cc, type: 3}
+  - {fileID: 21300000, guid: 652e95b26b32bed4e920ba58b36a62b0, type: 3}
   - {fileID: 21300000, guid: 0e9e72533af4a924cb98248a27955a25, type: 3}
   - {fileID: 21300000, guid: adc5f553b0f0d4444839cedeb892bab4, type: 3}
   - {fileID: 21300000, guid: 6ff0fc93b8a1c2f40932b63364922912, type: 3}
@@ -760,6 +763,7 @@ SpriteAtlas:
   - {fileID: -8937822744323045597, guid: afeab3b9fd0c19442af661a1d1f72d1b, type: 3}
   - {fileID: -6351870387016058614, guid: afeab3b9fd0c19442af661a1d1f72d1b, type: 3}
   - {fileID: 21300000, guid: d210793aeef3be74ba5ecda0bbe898c9, type: 3}
+  - {fileID: 21300000, guid: 9324faaa6af0cbd409fd6a901d05315b, type: 3}
   - {fileID: 21300000, guid: 5b29a1ba3552b5b4b824c583e87783fd, type: 3}
   - {fileID: 21300000, guid: 46b161dabd24e6c43aa181b2d99642e7, type: 3}
   - {fileID: 21300000, guid: 45368eea2740e5040ad33bd39d932887, type: 3}
@@ -1367,6 +1371,7 @@ SpriteAtlas:
   - InventoryHighlightRED1
   - Clock
   - InventoryHighlightGREEN
+  - PrzywolajChowanca
   - PauseScreen9Sprite
   - MajestatycznaModlitwaSprite
   - WiedzyInwokacjaSprite
@@ -1415,6 +1420,7 @@ SpriteAtlas:
   - IndoorsTileset_23
   - IndoorsTileset_30
   - InventoryBar
+  - ChowaniecOdwolaj
   - InventoryPlayer
   - PauseScreenNotSelectedTab
   - textBox
