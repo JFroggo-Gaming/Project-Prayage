@@ -9,6 +9,8 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Canvas parentCanvas;
     private Transform parentItem;
 
+    private Sprite originalSprite;
+
     private GameObject draggedItem;
     public Image inventorySlotHighlight;
     public Image inventorySlotImage;
@@ -43,7 +45,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         InventoryManager.Instance.AddItem(InventoryLocation.player, constantItem, constantItemQuantity);
         }
 
-
+        originalSprite = inventorySlotImage.sprite; // dzięki temu po "skończeniu" się itemow zachowaj oryginalny sprite slotu
 
     }
 
@@ -123,9 +125,10 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
     itemDetails = null;
     itemQuantity = 0;
-    inventorySlotImage.sprite = null;
+    inventorySlotImage.sprite = originalSprite; // Przywróć oryginalny obrazek
     textMeshProUGUI.text = "";
-    }
+}
+
 
     public void OnEndDrag(PointerEventData eventData)
 {

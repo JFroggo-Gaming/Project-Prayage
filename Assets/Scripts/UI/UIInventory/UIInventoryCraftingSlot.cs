@@ -21,17 +21,18 @@ public class UIInventoryCraftingSlot : MonoBehaviour, IBeginDragHandler, IDragHa
     private GameObject itemPrefab; // Przypisz prefabrykat przedmiotu w inspektorze
 
     private void Awake()
-    {
-        parentCanvas = GetComponentInParent<Canvas>();
-        mainCamera = Camera.main;
-        parentItem = GameObject.FindGameObjectWithTag("ItemsParentTransform").transform;
-    }
+{
+    parentCanvas = GetComponentInParent<Canvas>();
+    mainCamera = Camera.main;
+    parentItem = GameObject.FindGameObjectWithTag("ItemsParentTransform").transform;
+    defaultSlotSprite = emptySlotSprite; // Ustaw domyślny sprite
+}
 
     private void Start()
 {
     // Ustawienie początkowego sprite'a dla pustego slotu
     inventorySlotImage.sprite = emptySlotSprite;
-    defaultSlotSprite = inventorySlotImage.sprite; // Ustaw domyślny sprite
+    defaultSlotSprite = emptySlotSprite; // Ustaw domyślny sprite
 }
 
 
@@ -59,26 +60,28 @@ public class UIInventoryCraftingSlot : MonoBehaviour, IBeginDragHandler, IDragHa
     }
 
     public void OnEndDrag(PointerEventData eventData)
+{
+    if (draggedItem != null)
     {
-        if (draggedItem != null)
+        Destroy(draggedItem);
+
+        GameObject targetObject = eventData.pointerCurrentRaycast.gameObject;
+        if (targetObject != null && targetObject.GetComponent<UIInventoryCraftingSlot>() != null)
         {
-            Destroy(draggedItem);
-
-            GameObject targetObject = eventData.pointerCurrentRaycast.gameObject;
-            if (targetObject != null && targetObject.GetComponent<UIInventoryCraftingSlot>() != null)
-            {
-                // Logika przeniesienia przedmiotu do nowego slotu w panelu 3x3
-                TransferItemWithinCraftingPanel(targetObject.GetComponent<UIInventoryCraftingSlot>());
-            }
-            else if (!targetObject.CompareTag("DropArea"))
-            {
-                DropItemOnGround();
-            }
-
-            // Reset draggedItem na null po zakończeniu przeciągania
-            draggedItem = null;
+            // Logika przeniesienia przedmiotu do nowego slotu w panelu 3x3
+            TransferItemWithinCraftingPanel(targetObject.GetComponent<UIInventoryCraftingSlot>());
         }
+        else if (!targetObject.CompareTag("DropArea"))
+        {
+            // Jeśli przeciągnięty na puste miejsce, zaktualizuj slot źródłowy
+            SetDefaultSprite();
+            UpdateSlotDisplay();
+        }
+
+        // Reset draggedItem na null po zakończeniu przeciągania
+        draggedItem = null;
     }
+}
 
 
     public void OnPointerDown(PointerEventData eventData)
@@ -98,47 +101,77 @@ public class UIInventoryCraftingSlot : MonoBehaviour, IBeginDragHandler, IDragHa
     }
 
     private void TransferItemWithinCraftingPanel(UIInventoryCraftingSlot sourceSlot)
-{
-    if (sourceSlot.itemDetails != null)
     {
-        // Przypisz informacje o przedmiocie do bieżącego slotu panelu rzemieślniczego
+        if (sourceSlot.itemDetails != null)
+        {
+            // Jeśli oba sloty mają przedmioty, zamień je miejscami
+            if (itemDetails != null)
+            {
+                SwapItemsWith(sourceSlot);
+            }
+            else // W przeciwnym razie przenieś przedmiot do bieżącego slotu
+            {
+                MoveItemToCurrentSlot(sourceSlot);
+            }
+        }
+    }
+
+    private void SwapItemsWith(UIInventoryCraftingSlot otherSlot)
+    {
+        // Zamień miejsca dwóch przedmiotów
+        ItemDetails tempItemDetails = itemDetails;
+        int tempItemQuantity = itemQuantity;
+
+        itemDetails = otherSlot.itemDetails;
+        itemQuantity = otherSlot.itemQuantity;
+
+        otherSlot.itemDetails = tempItemDetails;
+        otherSlot.itemQuantity = tempItemQuantity;
+
+        // Zaktualizuj wygląd obu slotów
+        UpdateSlotDisplay();
+        otherSlot.UpdateSlotDisplay();
+    }
+
+    private void MoveItemToCurrentSlot(UIInventoryCraftingSlot sourceSlot)
+    {
+        // Przenieś przedmiot do bieżącego slotu
         itemDetails = sourceSlot.itemDetails;
         itemQuantity = sourceSlot.itemQuantity;
-        
-        // Oczyść slot źródłowy w panelu rzemieślniczym
-        sourceSlot.ClearSlot();
-        sourceSlot.UpdateSlotDisplay(); // Dodaj tę linię do aktualizacji źródłowego slotu
 
-        // Aktualizuj wyświetlanie dla bieżącego slotu
+        // Wyczyść źródłowy slot
+        sourceSlot.ClearSlot();
+
+        // Zaktualizuj wygląd bieżącego slotu
         UpdateSlotDisplay();
     }
-}
 
-
-public void SetDefaultSprite()
+    public void SetDefaultSprite()
     {
         inventorySlotImage.sprite = defaultSlotSprite;
     }
 
-public void UpdateSlotDisplay()
+    public void UpdateSlotDisplay()
+{
+    
+    if (itemDetails != null && itemQuantity > 0)
     {
-        if (itemDetails != null)
-        {
-            inventorySlotImage.sprite = itemDetails.itemSprite;
-          //  textMeshProUGUI.text = itemQuantity > 1 ? itemQuantity.ToString() : "";
-        }
-        else
-        {
-            ClearSlot();
-        }
+        inventorySlotImage.sprite = itemDetails.itemSprite;
     }
+    else
+    {
+        // Jeśli brak przedmiotu lub ilość równa zero, ustaw domyślny sprite
+        inventorySlotImage.sprite = defaultSlotSprite;
+    }
+}
+
 
     private void ClearSlot()
     {
         itemDetails = null;
         itemQuantity = 0;
         inventorySlotImage.sprite = emptySlotSprite; // Ustawienie sprite'a dla pustego slotu
-       // textMeshProUGUI.text = "";
+        //textMeshProUGUI.text = "";
     }
 
     private void DropItemOnGround()
@@ -159,8 +192,8 @@ public void UpdateSlotDisplay()
         if (itemQuantity == 0)
         {
             itemDetails = null;
-            inventorySlotImage.sprite = null;
-            textMeshProUGUI.text = "";
+            inventorySlotImage.sprite = emptySlotSprite;
+           // textMeshProUGUI.text = "";
         }
         else
         {
