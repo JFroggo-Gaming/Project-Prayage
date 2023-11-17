@@ -11,6 +11,9 @@ public class UIInventoryCraftingSlot : MonoBehaviour, IBeginDragHandler, IDragHa
     [HideInInspector] public ItemDetails itemDetails;
     [HideInInspector] public int itemQuantity;
 
+    public Sprite emptySlotSprite; // Ustaw sprite dla pustego slotu w inspektorze
+    private Sprite defaultSlotSprite; // Dodaj pole na domyślny sprite slotu
+
     private GameObject draggedItem;
     private Canvas parentCanvas;
     private Camera mainCamera;
@@ -25,9 +28,12 @@ public class UIInventoryCraftingSlot : MonoBehaviour, IBeginDragHandler, IDragHa
     }
 
     private void Start()
-    {
-        // Inicjalizacja slotu, jeśli jest potrzebna
-    }
+{
+    // Ustawienie początkowego sprite'a dla pustego slotu
+    inventorySlotImage.sprite = emptySlotSprite;
+    defaultSlotSprite = inventorySlotImage.sprite; // Ustaw domyślny sprite
+}
+
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -98,35 +104,41 @@ public class UIInventoryCraftingSlot : MonoBehaviour, IBeginDragHandler, IDragHa
         // Przypisz informacje o przedmiocie do bieżącego slotu panelu rzemieślniczego
         itemDetails = sourceSlot.itemDetails;
         itemQuantity = sourceSlot.itemQuantity;
-        UpdateSlotDisplay();
-
+        
         // Oczyść slot źródłowy w panelu rzemieślniczym
         sourceSlot.ClearSlot();
         sourceSlot.UpdateSlotDisplay(); // Dodaj tę linię do aktualizacji źródłowego slotu
+
+        // Aktualizuj wyświetlanie dla bieżącego slotu
+        UpdateSlotDisplay();
     }
 }
 
+
+public void SetDefaultSprite()
+    {
+        inventorySlotImage.sprite = defaultSlotSprite;
+    }
 
 public void UpdateSlotDisplay()
-{
-    if (itemDetails != null)
     {
-        inventorySlotImage.sprite = itemDetails.itemSprite;
-     //   textMeshProUGUI.text = itemQuantity > 1 ? itemQuantity.ToString() : "";
+        if (itemDetails != null)
+        {
+            inventorySlotImage.sprite = itemDetails.itemSprite;
+          //  textMeshProUGUI.text = itemQuantity > 1 ? itemQuantity.ToString() : "";
+        }
+        else
+        {
+            ClearSlot();
+        }
     }
-    else
-    {
-        ClearSlot();
-    }
-}
-
 
     private void ClearSlot()
     {
         itemDetails = null;
         itemQuantity = 0;
-        inventorySlotImage.sprite = null;
-//        textMeshProUGUI.text = "";
+        inventorySlotImage.sprite = emptySlotSprite; // Ustawienie sprite'a dla pustego slotu
+       // textMeshProUGUI.text = "";
     }
 
     private void DropItemOnGround()
