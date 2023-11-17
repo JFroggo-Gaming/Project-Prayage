@@ -31,9 +31,9 @@ public class UIInventoryCraftingSlot : MonoBehaviour, IBeginDragHandler, IDragHa
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (itemDetails != null && itemQuantity > 0)
+        if (itemDetails != null && itemQuantity > 0 && draggedItem == null)
         {
-            // Tworzenie obiektu do przeciągania
+            // Tworzenie obiektu do przeciągania, jeśli draggedItem nie istnieje
             draggedItem = new GameObject("Dragged Item");
             Image draggedItemImage = draggedItem.AddComponent<Image>();
             draggedItemImage.sprite = inventorySlotImage.sprite;
@@ -62,14 +62,18 @@ public class UIInventoryCraftingSlot : MonoBehaviour, IBeginDragHandler, IDragHa
             if (targetObject != null && targetObject.GetComponent<UIInventoryCraftingSlot>() != null)
             {
                 // Logika przeniesienia przedmiotu do nowego slotu w panelu 3x3
-                TransferItemFromInventory(targetObject.GetComponent<UIInventoryCraftingSlot>());
+                TransferItemWithinCraftingPanel(targetObject.GetComponent<UIInventoryCraftingSlot>());
             }
             else if (!targetObject.CompareTag("DropArea"))
             {
                 DropItemOnGround();
             }
+
+            // Reset draggedItem na null po zakończeniu przeciągania
+            draggedItem = null;
         }
     }
+
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -77,20 +81,31 @@ public class UIInventoryCraftingSlot : MonoBehaviour, IBeginDragHandler, IDragHa
         EventHandler.CallCraftingSlotClickedEvent(this);
     }
 
-    private void TransferItemFromInventory(UIInventoryCraftingSlot sourceSlot)
+    public void OnDrop(PointerEventData eventData)
+    {
+        UIInventoryCraftingSlot sourceSlot = eventData.pointerDrag.GetComponent<UIInventoryCraftingSlot>();
+        if (sourceSlot != null)
+        {
+            // Logika przenoszenia przedmiotów między slotami w panelu rzemieślniczym
+            TransferItemWithinCraftingPanel(sourceSlot);
+        }
+    }
+
+    private void TransferItemWithinCraftingPanel(UIInventoryCraftingSlot sourceSlot)
 {
-    // Przenieś informacje o przedmiocie do slotu panelu rzemieślniczego
     if (sourceSlot.itemDetails != null)
     {
         // Przypisz informacje o przedmiocie do bieżącego slotu panelu rzemieślniczego
         itemDetails = sourceSlot.itemDetails;
-        itemQuantity = 1; // Ustaw ilość na 1, jeśli w panelu 3x3 ma być tylko jeden przedmiot
-        UpdateSlotDisplay(); // Zaktualizuj wygląd slotu panelu rzemieślniczego
+        itemQuantity = sourceSlot.itemQuantity;
+        UpdateSlotDisplay();
 
-        // Oczyść slot źródłowy w panelu ekwipunku
+        // Oczyść slot źródłowy w panelu rzemieślniczym
         sourceSlot.ClearSlot();
+        sourceSlot.UpdateSlotDisplay(); // Dodaj tę linię do aktualizacji źródłowego slotu
     }
 }
+
 
 public void UpdateSlotDisplay()
 {
@@ -111,7 +126,7 @@ public void UpdateSlotDisplay()
         itemDetails = null;
         itemQuantity = 0;
         inventorySlotImage.sprite = null;
-        textMeshProUGUI.text = "";
+//        textMeshProUGUI.text = "";
     }
 
     private void DropItemOnGround()
