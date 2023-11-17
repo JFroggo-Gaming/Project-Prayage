@@ -274,18 +274,47 @@ public string GetItemTypeDescription(ItemType itemType)
 
     public void TransferItemToCraftingPanel(UIInventorySlot sourceSlot, UIInventoryCraftingSlot targetCraftingSlot)
 {
-    if (sourceSlot.itemDetails != null)
+    if (sourceSlot.itemDetails != null && sourceSlot.itemQuantity > 0)
     {
         // Tutaj możesz dodać dodatkową logikę dla łączenia przedmiotów, sprawdzania typu itp.
 
+        // Sprawdź ile przedmiotów przenieść (zmienione na przenoszenie jednej sztuki)
+        int itemsToTransfer = 1;
+
         // Przenieś informacje o przedmiocie do slotu panelu rzemieślniczego
         targetCraftingSlot.itemDetails = sourceSlot.itemDetails;
-        targetCraftingSlot.itemQuantity = sourceSlot.itemQuantity;
+        targetCraftingSlot.itemQuantity = itemsToTransfer;
         targetCraftingSlot.UpdateSlotDisplay();
 
-        // Oczyść slot źródłowy
-        sourceSlot.ClearSlot();
+        // Odejmij przeniesioną ilość przedmiotów z źródłowego slotu
+        sourceSlot.itemQuantity -= itemsToTransfer;
+
+        // Jeśli nie pozostały już przedmioty w źródłowym slocie, wyczyść go
+        if (sourceSlot.itemQuantity == 0)
+        {
+            sourceSlot.ClearSlot();
+        }
+
+        // Wywołaj zdarzenie aktualizacji przybornika (może wymagać dostosowania do Twojej implementacji)
+        EventHandler.CallInventoryUpdatedEvent(InventoryLocation.player, InventoryManager.Instance.GetInventoryList(InventoryLocation.player));
     }
 }
+
+
+
+
+public List<InventoryItem> GetInventoryList(InventoryLocation inventoryLocation)
+{
+    if ((int)inventoryLocation < inventoryLists.Length)
+    {
+        return inventoryLists[(int)inventoryLocation];
+    }
+    else
+    {
+        Debug.LogError($"InventoryLocation {(int)inventoryLocation} is out of bounds.");
+        return null;
+    }
+}
+
 
 }

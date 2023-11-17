@@ -14,7 +14,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public Image inventorySlotImage;
     public TextMeshProUGUI textMeshProUGUI;
 
-    [SerializeField] private int constantItemQuantity = 99;  // Stała liczba przedmiotów w slocie
+    [SerializeField] public int constantItemQuantity = 99;  // Stała liczba przedmiotów w slocie
     [SerializeField] private Item constantItem = null;  // Referencja do przedmiotu
     [SerializeField] private int slotNumber = 0;
 
