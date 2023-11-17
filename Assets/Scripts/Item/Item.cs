@@ -36,7 +36,7 @@ public class Item : MonoBehaviour
     }
 
     // Handle mouse click to pick up the item
-    private void OnMouseDown()
+    private void OnMouseDown() // 
     {
         // Zapisz dane BoxCollider
         SaveColliderData();

@@ -34,7 +34,6 @@ public class UIInventoryCraftingSlot : MonoBehaviour, IBeginDragHandler, IDragHa
     defaultSlotSprite = emptySlotSprite; // Ustaw domyślny sprite
 }
 
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (itemDetails != null && itemQuantity > 0 && draggedItem == null)
@@ -90,8 +89,6 @@ public void OnEndDrag(PointerEventData eventData)
         draggedItem = null;
     }
 }
-
-
 
     public void OnPointerDown(PointerEventData eventData)
     {

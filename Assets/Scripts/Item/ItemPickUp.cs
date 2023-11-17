@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ItemPickUp : MonoBehaviour
+public class ItemPickUp : MonoBehaviour // klasa do zbierania przedmiotów, gdybyśmy chcieli skorzystać z obiektu z colliderem zbierającym przedmioty
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {

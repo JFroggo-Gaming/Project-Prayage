@@ -32,9 +32,6 @@ public class UIInventoryBar : MonoBehaviour
     }
 
 
-
-    
-
     public void ClearHighlightOnInventorySlots()
     {
         if (inventorySlot.Length > 0)

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
-[CustomPropertyDrawer(typeof(ItemCodeDescriptionAttribute))]
+[CustomPropertyDrawer(typeof(ItemCodeDescriptionAttribute))] // pokazuje w czasie rzeczywistym czy przedmiot jest prawidłowy po wpisaniu jego "Item Code" w inspektorze
 public class ItemCodeDescriptionDrawer : PropertyDrawer
 {
 

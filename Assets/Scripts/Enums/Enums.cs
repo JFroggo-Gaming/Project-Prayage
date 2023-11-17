@@ -7,7 +7,6 @@ public enum InventoryLocation
     
 }
 
-
 public enum ItemType
 {   
     // Intencje

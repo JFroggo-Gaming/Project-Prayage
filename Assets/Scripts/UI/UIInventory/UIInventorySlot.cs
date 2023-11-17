@@ -164,7 +164,6 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 }
 
-
     public void OnPointerClick(PointerEventData eventData)
     {
         // if left click
@@ -200,7 +199,6 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         
     }
 
-    
     public void OnPointerEnter(PointerEventData eventData)
     {
         // Populate text box with item details

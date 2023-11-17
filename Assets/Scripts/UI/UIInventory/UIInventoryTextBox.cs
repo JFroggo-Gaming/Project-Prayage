@@ -13,8 +13,6 @@ public class UIInventoryTextBox : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textMeshBottom2 = null;
     [SerializeField] private TextMeshProUGUI textMeshBottom3 = null;
 
-
-
     // Set text values
     public void SetTextboxText(string textTop1, string textTop2, string textTop3, string textBottom1, string textBottom2, string textBottom3)
     {

@@ -89,7 +89,6 @@ public class InventoryManager : SingletonMonobehaviour<InventoryManager>
         }
     }
 
-
     /// <summary>
     /// Add item to the end of the inventory
     /// </summary>
@@ -216,7 +215,6 @@ public string GetItemTypeDescription(ItemType itemType)
             itemTypeDescription = Settings.BiernejModlitwy;
             break;
         
-
         default:
             itemTypeDescription = itemType.ToString();
             break;
@@ -273,10 +271,10 @@ public string GetItemTypeDescription(ItemType itemType)
     }
 
     public void TransferItemToCraftingPanel(UIInventorySlot sourceSlot, UIInventoryCraftingSlot targetCraftingSlot)
-{
+    {
     if (sourceSlot.itemDetails != null && sourceSlot.itemQuantity > 0)
     {
-        // Tutaj możesz dodać dodatkową logikę dla łączenia przedmiotów, sprawdzania typu itp.
+        // Tutaj można dodać dodatkową logikę dla łączenia przedmiotów, sprawdzania typu itp.
 
         // Sprawdź ile przedmiotów przenieść (zmienione na przenoszenie jednej sztuki)
         int itemsToTransfer = 1;
@@ -298,10 +296,7 @@ public string GetItemTypeDescription(ItemType itemType)
         // Wywołaj zdarzenie aktualizacji przybornika (może wymagać dostosowania do Twojej implementacji)
         EventHandler.CallInventoryUpdatedEvent(InventoryLocation.player, InventoryManager.Instance.GetInventoryList(InventoryLocation.player));
     }
-}
-
-
-
+    }
 
 public List<InventoryItem> GetInventoryList(InventoryLocation inventoryLocation)
 {
@@ -315,6 +310,5 @@ public List<InventoryItem> GetInventoryList(InventoryLocation inventoryLocation)
         return null;
     }
 }
-
 
 }
