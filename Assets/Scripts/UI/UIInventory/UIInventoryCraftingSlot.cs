@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
-
 public class UIInventoryCraftingSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerDownHandler
 {
     public Image inventorySlotImage;
@@ -59,7 +58,17 @@ public class UIInventoryCraftingSlot : MonoBehaviour, IBeginDragHandler, IDragHa
         }
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    private void HandleItemDrop()
+{
+    // Jeśli przeciągnięty na puste miejsce, usuń przedmiot z panelu rzemieślniczego
+    ClearSlot();
+
+    // Zaktualizuj slot źródłowy
+    SetDefaultSprite();
+    UpdateSlotDisplay();
+}
+
+public void OnEndDrag(PointerEventData eventData)
 {
     if (draggedItem != null)
     {
@@ -71,17 +80,17 @@ public class UIInventoryCraftingSlot : MonoBehaviour, IBeginDragHandler, IDragHa
             // Logika przeniesienia przedmiotu do nowego slotu w panelu 3x3
             TransferItemWithinCraftingPanel(targetObject.GetComponent<UIInventoryCraftingSlot>());
         }
-        else if (!targetObject.CompareTag("DropArea"))
+        else if (itemDetails.canBeDropped)
         {
-            // Jeśli przeciągnięty na puste miejsce, zaktualizuj slot źródłowy
-            SetDefaultSprite();
-            UpdateSlotDisplay();
+            // Obsługa upuszczania przedmiotu
+            HandleItemDrop();
         }
 
         // Reset draggedItem na null po zakończeniu przeciągania
         draggedItem = null;
     }
 }
+
 
 
     public void OnPointerDown(PointerEventData eventData)
